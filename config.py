@@ -12,7 +12,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:29403241@localhost/bigdata'
 
 
 class TestingConfig(Config):
@@ -21,6 +21,7 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
 	pass
+
 
 config = {
     'development': DevelopmentConfig,
