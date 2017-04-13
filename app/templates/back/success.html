@@ -1,0 +1,21 @@
+{% extends "back/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %} 
+
+{% block title %}BIN - Upload{% endblock %}
+
+{% block head %}
+{{ super() }}
+<meta http-equiv="refresh" content="5;url={{url_for('admin.upload')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    {% block page_content %}
+    <div class="page-header">
+        <h1>Success Upload, 5 min Redirect To Upload</h1>
+    </div>
+    {% endblock %}
+
+</div>
+{% endblock %}

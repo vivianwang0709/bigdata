@@ -56,10 +56,10 @@
                         <div class="collapse navbar-collapse" id="example-navbar-collapse">
                             <ul class="nav navbar-nav">
                                 <li class="active"><a href="{{url_for('.about')}}">關於我們</a></li>
-                                <li><a href="{{ url_for('.article',name='learn')}}">學習教程</a></li>
-                                <li><a href="{{ url_for('.article',name='news')}}">產業資訊</a></li>
-                                <li><a href="{{ url_for('.article',name='code')}}">技術框架</a></li>
-                                <li><a href="{{ url_for('.article',name='analysis')}}">數據分析</a></li>
+                                <li><a href="{{ url_for('.post',name='learn')}}">學習教程</a></li>
+                                <li><a href="{{ url_for('.post',name='news')}}">產業資訊</a></li>
+                                <li><a href="{{ url_for('.post',name='code')}}">技術框架</a></li>
+                                <li><a href="{{ url_for('.post',name='analysis')}}">數據分析</a></li>
                                 <!--                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 數據分析<b class="caret"></b>
@@ -93,14 +93,14 @@
                 <div class="carousel-inner">
                     <div class="item active">
                         <a href="{{url_for('.about')}}">
-                            <img src="../static/pic/aboutus.jpg" alt="OKWU.edu Homepage">
+                            <img src="../static/pic/other/aboutus_1.jpg" alt="OKWU.edu Homepage">
                             <div class="carousel-caption">
                                 <span>關於big data insight</span>
                             </div>
                         </a>
                     </div>
                     <div class="item">
-                        <a href="{{url_for('.article',name='learn',pageid='1')}}">
+                        <a href="{{url_for('.post',name='learn',pageid='1')}}">
                             <img src="../static/pic/learn_1_1.jpg" alt="OKWU Athletics Homepage">
                             <div class="carousel-caption">
                                 <span>作為大數據從業人員，如何寫好一份可堪入目的簡歷?</span>
@@ -108,7 +108,7 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="{{url_for('.article',name='analysis',pageid='1')}}">
+                        <a href="{{url_for('.post',name='analysis',pageid='1')}}">
                             <img src="../static/pic/analysis_1_1.jpg" alt="Bartlesville Community Foundation">
                             <div class="carousel-caption">
                                 <span>用戶畫像是什麼，知多少?</span>
@@ -116,7 +116,7 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="{{url_for('.article',name='code',pageid='1')}}">
+                        <a href="{{url_for('.post',name='code',pageid='1')}}">
                             <img src="../static/pic/code_1_1.jpg" alt="Emancipation Stories">
                             <div class="carousel-caption">
                                 <span>如何用Spark解決一些經典MapReduce問題？</span>
@@ -140,7 +140,7 @@
                 <div class="article">
                     <div class="a_img">
                         <a href="{{url_for('.about')}}">
-                            <img src="../static/pic/aboutus.jpg" alt="">
+                            <img src="../static/pic/other/aboutus_1.jpg" alt="">
                         </a>
                     </div>
                     <div class="a_right">
@@ -162,15 +162,15 @@
                 <div class="article_like">
                     <strong>猜你喜歡</strong>
                     <ul>
-                        <li><a href="../article/code?pageid=1">
+                        <li><a href="../post/code?pageid=1">
                         如何用Spark解決一些經典MapReduce問題？</a></li>
-                        <li><a href="../article/analysis?pageid=1">
+                        <li><a href="../post/analysis?pageid=1">
                         用戶畫像是什麼，你懂嗎?</a></li>
-                        <li><a href="../article/learn?pageid=1">
+                        <li><a href="../post/learn?pageid=1">
                         作為大數據從業人員，如何寫好一份可堪入目的簡歷?</a></li>
-                        <li><a href="../article/news?pageid=1">
+                        <li><a href="../post/news?pageid=1">
                         YouTube利用語音識別和機器學習算法為10億視頻配自動字幕</a></li>
-                        <li><a href="../article/news?pageid=2">
+                        <li><a href="../post/news?pageid=2">
                         微軟要將數據中心放到水下，你怎麼看？</a></li>
                         <li><a href="../about">
                         About Big Data Insight</a></li>

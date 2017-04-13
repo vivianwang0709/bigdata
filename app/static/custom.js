@@ -12,31 +12,32 @@
     		this.path = '../static/json/post.json';
 
 		}else{
-    		var reg = new RegExp("/article/",'g');
+    		var reg = new RegExp("/post/",'g');
     		var url = url.replace(reg,'');
     		this.path = '../static/json/'+url+'.json';
 		}
+      this.path = '../static/json/news1.json';
     	return this.path
   	}
 
   	Article.prototype.getData = function (path,count) {
-
   		$.ajax({
         	url: path, //json文件位置
         	type: "GET", //请求方式为get
         	dataType: "json", //返回数据格式为json
         	success: function(data) {
-
             //请求成功完成后要执行的方法 
             //each循环 使用$.each方法遍历返回的数据date
-            $.each(data, function(i, item) {
-                
-                if(i<=3*count && i>=3*count-2){
-                	$(".post").append(function(n){
-                    return "<div class='article'><div class='a_img'><a href='../article/"+ item.tag +"?pageid=" +item.pageid+ "'><img src='../static/pic/"+item.tag+"_"+item.pageid+"_1.jpg' alt=''></a></div><div class='a_right'><div class='a_title'><h3>" + item.title + "</h3></div><div class='a_editor'></div><div class='a_date'></div><div class='a_content'><p>"+ item.content + "</p></div><div class='a_tag'><p><a class='btn btn-primary pull-right' href='../article/"+ item.tag +"?pageid=" +item.pageid+ "'>Read more<span class=''></span></a></p></div></div></div>"
-                	});
-            	}
-            })
+            for (var i = 3*count-3; i < 3*count; i++) { 
+              //console.log(data[i].pid)
+              console.log(data[0].title)
+              console.log(data[1].title)
+
+              $(".post").append(function(n){
+                //return "<p>"+ data[i].article_type +"</p>"
+                return "<div class='article'><div class='a_img'><a href='../post/"+ data[i].article_type +"?pageid=" +data[i].pid+ "'><img src='../static/pic/"+data[i].article_type+"/"+data[i].pid+"_1.jpg' alt=''></a></div><div class='a_right'><div class='a_title'><h3>" + data[i].title + "</h3></div><div class='a_editor'></div><div class='a_date'></div><div class='a_content'><p>"+ data[i].scontent + "</p></div><div class='a_tag'><p><a class='btn btn-primary pull-right' href='../post/"+ data[i].article_type +"?pageid=" +data[i].pid+ "'>Read more<span class=''></span></a></p></div></div></div>"
+              });
+            }
 
         	}	
     	})
@@ -64,7 +65,7 @@
     }
 
 	$(window).scroll(function(){
-		
+
 		//滚动条所在位置的高度
 		var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
 
@@ -78,8 +79,8 @@
 
 	$(document).ready(function() {
 		$('[data-ride="post"]').each(function () {
-			var $this = $(this);
-      		Plugin.call($this,$this.data())
+			  var $this = $(this);
+      	Plugin.call($this,$this.data())
     	})
   	})
   	

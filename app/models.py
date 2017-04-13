@@ -1,6 +1,9 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .. import db, login_manager
+import json
+from . import db, login_manager
+import os
+
 
 
 class User(UserMixin, db.Model):
@@ -22,16 +25,34 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
-        return '<User %r>' % self.name
+        return '<User %r>' % self.username
 
 
 class Article(db.Model):
     __tablename__ = 'article'
-    id = db.Column(db.Integer, primary_key=True)
-    pid = db.Column(db.Integer, unique=True, index=True)
+    pid = db.Column(db.BigInteger, primary_key=True)
+    title = db.Column(db.String(64))
+    author = db.Column(db.String(11))
+    content = db.Column(db.String(128))
+    scontent = db.Column(db.String(64))
+    date = db.Column(db.Date,index=True)
+    article_type = db.Column(db.String(11), index=True)
+    tag = db.Column(db.String(11))
+    view = db.Column(db.Integer)
+    url_from = db.Column(db.String(11), unique=True)
+    pic_count = db.Column(db.Integer)
+    sort = db.Column(db.Integer)
+
+    def make_json_auto(self):
+        data = self.query.all()
+        cols = ['pid','scontent','date','article_type','title']
+        result = [{col: getattr(d, col) for col in cols} for d in data]
+        with open(os.path.expanduser("~/Desktop/flask/bigdata/app/static/json/news1.json"), 'w+') as file:
+            json.dump(result,file)
+            file.close()
 
     def __repr__(self):
-        return '<Article %r>' % self.name
+        return '<Article %r>' % self.pid
 
 
 class Tag(db.Model):
