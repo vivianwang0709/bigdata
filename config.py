@@ -20,13 +20,12 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
-	pass
+    SQLALCHEMY_DATABASE_URI = 'postgres://ktkpyrovtglcnz:0ef4c7e58a874cb3a807a7109dd274929483a4ded20cec7a7fa28f9a68e74adc@ec2-54-243-185-123.compute-1.amazonaws.com:5432/dfrf1v1b6c59d9'
 
 
 config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
     'production': ProductionConfig,
-
     'default': DevelopmentConfig
 }
