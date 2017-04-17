@@ -7,7 +7,7 @@ import os
 
 
 class User(UserMixin, db.Model):
-    __tablename__ = 'user'
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
@@ -47,21 +47,14 @@ class Article(db.Model):
         data = self.query.all()
         cols = ['pid','scontent','date','article_type','title']
         result = [{col: getattr(d, col) for col in cols} for d in data]
-        with open(os.path.expanduser("~/Desktop/flask/bigdata/app/static/json/news1.json"), 'w+') as file:
+        path = os.getcwd()
+        with open(os.path.expanduser(path+"/app/static/json/news1.json"), 'w+') as file:
             json.dump(result,file)
             file.close()
 
     def __repr__(self):
         return '<Article %r>' % self.pid
 
-
-class Tag(db.Model):
-    __tablename__ = 'tag'
-    id = db.Column(db.Integer, primary_key=True)
-
-
-    def __repr__(self):
-        return '<Tag %r>' % self.name
 
 
 @login_manager.user_loader

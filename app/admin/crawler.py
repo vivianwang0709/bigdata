@@ -31,11 +31,13 @@ def get_html(url):
 from io import StringIO,BytesIO
 from PIL import Image
 def download_img(pid,url,path,pcount,article_type):
+
     image_name = pid+'_'+str(pcount)+'.jpg'
     r = requests.get(url)
     s = BytesIO(r.content)
     i = Image.open(s)
     i.save(path+'/'+article_type+'/'+image_name)
+
 
 
 # 簡轉繁

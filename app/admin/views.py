@@ -65,7 +65,7 @@ def login():
         # 登陸資訊正確，進入後台系統
         if user is not None and user.verify_password(form.password.data):
             login_user(user,form.remember_me.data)
-            return redirect(url_for('main.home'))
+            return redirect(url_for('admin.upload'))
 
         flash('Invalid username or password.')
     return render_template('back/login.html', form=form)
