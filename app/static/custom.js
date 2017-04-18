@@ -30,12 +30,12 @@
             //each循环 使用$.each方法遍历返回的数据date
             for (var i = 3*count-3; i < 3*count; i++) { 
               //console.log(data[i].pid)
-              console.log(data[0].title)
-              console.log(data[1].title)
+              //console.log(data[0].title)
+              //console.log(data[1].title)
 
               $(".post").append(function(n){
                 //return "<p>"+ data[i].article_type +"</p>"
-                return "<div class='article'><div class='a_img'><a href='../post/"+ data[i].article_type +"?pageid=" +data[i].pid+ "'><img src='../static/pic/"+data[i].article_type+"/"+data[i].pid+"_1.jpg' alt=''></a></div><div class='a_right'><div class='a_title'><h3>" + data[i].title + "</h3></div><div class='a_editor'></div><div class='a_date'></div><div class='a_content'><p>"+ data[i].scontent + "</p></div><div class='a_tag'><p><a class='btn btn-primary pull-right' href='../post/"+ data[i].article_type +"?pageid=" +data[i].pid+ "'>Read more<span class=''></span></a></p></div></div></div>"
+                return "<div class='article'><div class='a_img'><a href='../post/"+ data[i].article_type +"?pageid=" +data[i].pid+ "'><img src='../static/pic/"+data[i].article_type+"/"+data[i].pid+"_1.jpg' alt=''></a></div><div class='a_right'><div class='a_title'><p>" + data[i].title + "</p></div><div class='a_editor'></div><div class='a_date'></div><div class='a_content'><p>"+ data[i].scontent + "</p></div><div class='a_tag'><p><a class='btn btn-primary pull-right' href='../post/"+ data[i].article_type +"?pageid=" +data[i].pid+ "'>Read more<span class=''></span></a></p></div></div></div>"
               });
             }
 
