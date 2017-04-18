@@ -55,7 +55,7 @@ def get_info(pid,url,path,article_type):
     soup = get_html(url)
 
     # maek title
-    title = chs_to_cht(str(soup.title.string))
+    title = chs_to_cht(str(soup.title.string).replace('36','BIN '))
 
     # make content
     pcount = 0

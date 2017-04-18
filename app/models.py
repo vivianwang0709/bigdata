@@ -9,7 +9,7 @@ import os
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True, index=True)
+    username = db.Column(db.String(64), unique=True)
     password_hash = db.Column(db.String(128))
 
     @property
@@ -31,15 +31,15 @@ class User(UserMixin, db.Model):
 class Article(db.Model):
     __tablename__ = 'article'
     pid = db.Column(db.BigInteger, primary_key=True)
-    title = db.Column(db.String(64))
-    author = db.Column(db.String(11))
-    content = db.Column(db.String(128))
-    scontent = db.Column(db.String(64))
-    date = db.Column(db.Date,index=True)
-    article_type = db.Column(db.String(11), index=True)
-    tag = db.Column(db.String(11))
+    title = db.Column(db.String(1000))
+    author = db.Column(db.String(128))
+    content = db.Column(db.Text())
+    scontent = db.Column(db.Text())
+    date = db.Column(db.String(128),index=True)
+    article_type = db.Column(db.String(128), index=True)
+    tag = db.Column(db.String(128))
     view = db.Column(db.Integer)
-    url_from = db.Column(db.String(11), unique=True)
+    url_from = db.Column(db.String(128), unique=True)
     pic_count = db.Column(db.Integer)
     sort = db.Column(db.Integer)
 
