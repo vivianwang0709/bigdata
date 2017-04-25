@@ -8,6 +8,7 @@ from ..models import User,Article
 from . import admin
 from .forms import LoginForm,UploadForm
 from .crawler import *
+from .autojson import *
 
 import os
 import datetime
@@ -16,6 +17,13 @@ import datetime
 # @admin.route('/success')
 # def success():
 #     return render_template('back/success.html')
+
+@admin.route('/jsonfile')
+@login_required
+def jsonfile():
+    make_json()
+    return render_template('back/success.html')
+
 
 
 @admin.route('/upload', methods=['GET', 'POST'])
