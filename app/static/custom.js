@@ -4,6 +4,7 @@
 	var Article = function () {
 		this.count = 1
 		this.path  = null
+    this.stop = false
   	}
 
   	Article.prototype.getPath = function (url) {
@@ -21,6 +22,7 @@
   	}
 
   	Article.prototype.getData = function (path,count) {
+      var that = this
   		$.ajax({
         	url: path, //json文件位置
         	type: "GET", //请求方式为get
@@ -28,18 +30,15 @@
         	success: function(data) {
             //请求成功完成后要执行的方法 
             //each循环 使用$.each方法遍历返回的数据date
+            if (data.length<3*count+1) that.stop = true;
             for (var i = 3*count-3; i < 3*count; i++) { 
               //console.log(data[i].pid)
               //console.log(data[0].title)
-              //console.log(data[1].title)
-
               $(".post").append(function(n){
-                //return "<p>"+ data[i].article_type +"</p>"
                 return "<div class='article'><div class='a_img'><a href='../post/"+ data[i].article_type +"?pageid=" +data[i].pid+ "'><img src='../static/pic/"+data[i].article_type+"/"+data[i].pid+"_1.jpg' alt=''></a></div><div class='a_right'><div class='a_title'><p>" + data[i].title + "</p></div><div class='a_editor'></div><div class='a_date'></div><div class='a_content'><p>"+ data[i].scontent + "</p></div><div class='a_tag'><p><a class='btn btn-primary pull-right' href='../post/"+ data[i].article_type +"?pageid=" +data[i].pid+ "'>Read more<span class=''></span></a></p></div></div></div>"
               });
             }
-
-        	}	
+        	}
     	})
 
   		this.count = count + 1
@@ -47,11 +46,11 @@
   	}
 
 
- 	function Plugin(target) {
+ 	function Plugin(e) {
 
-  		var $this   = $(this)
-    	var url 	= window.location.pathname;
-    	var data    = $this.data('bs.post')
+    var $this   = $(this)
+    var url 	= window.location.pathname;
+    var data    = $this.data('bs.post')
     	
 		if (!data) {
 			$this.data('bs.post', (data = new Article()))
@@ -64,23 +63,27 @@
 
     }
 
-	$(window).scroll(function(){
+	$(window).scroll(function(e){
 
-		//滚动条所在位置的高度
+    //滚动条所在位置的高度
 		var totalheight = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+    var $target = $(".post")
+    var $data = $target.data('bs.post')
 
-		//当前文档高度   小于或等于   滚动条所在位置高度  则是页面底部
-		if(($(document).height()) <= totalheight+10) {
-  		var $target = $(".post")
-			Plugin.call($target,$target.data())
+    if ($data==null) return
+    if ($data.stop!=false) return
+    //当前文档高度   小于或等于   滚动条所在位置高度  则是页面底部
+    if (($(document).height()) <= totalheight+10) {
+			Plugin.call($target)
 		}
+
     })
     
 
 	$(document).ready(function() {
 		$('[data-ride="post"]').each(function () {
 			  var $this = $(this);
-      	Plugin.call($this,$this.data())
+      	Plugin.call($this)
     	})
   	})
   	

@@ -44,7 +44,7 @@ def upload():
         url = form.url.data
 
         #[title,content,scontent,pcount]
-        cdata = get_info(str(pid) , url, path+"/app/static/pic/", article_type)
+        cdata = get_info(str(pid) , url, path+"/app/static/pic", article_type)
         article.pid = pid
         article.date = datetime.datetime.now().date().strftime("%Y-%m-%d")
         article.title = cdata[0]
