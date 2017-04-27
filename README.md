@@ -34,12 +34,13 @@
 * 時間：2017.04.16-2017.0
 * 前端 
 	＊ 修改文章動態生成方式：javascript → jquery，依據bootstrap插件形式撰寫
-	＊ 模板化：猜你喜歡模板
+	＊ 模板化：猜你喜歡模板：_article.like.html
 * 後端
 	＊ 儲存方式轉移：json文檔 → mysql數據庫
 	＊ 添加登入模塊
 	＊ 添加簡轉繁模塊
 	＊ 添加文章上傳方式：crawler模式
+	＊ 優化crawler.py
 
 * 建置
 	* 2017.04.25 遷移至heroku.com，網址為http://bigdatainsight.herokuapp.com/
