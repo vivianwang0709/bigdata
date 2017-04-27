@@ -58,7 +58,7 @@ def upload():
         db.session.commit()
 
         return render_template('back/success.html')
-
+    form.author.data = 'vivian'
     return render_template('back/upload.html', form=form)
 
 

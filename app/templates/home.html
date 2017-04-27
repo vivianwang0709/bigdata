@@ -100,26 +100,26 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="{{url_for('.post',name='analysis',pageid='4')}}">
-                            <img src="../static/pic/analysis/4_1.jpg" alt="OKWU Athletics Homepage">
-                            <div class="carousel-caption">
-                                <span>2016大數據創新大賽——機場客流量的時空分佈預測模型解析</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="item">
                         <a href="{{url_for('.post',name='code',pageid='5')}}">
-                            <img src="../static/pic/code/5_1.jpg" alt="Bartlesville Community Foundation">
+                            <img src="../static/pic/code/5_1.jpg" alt="OKWU Athletics Homepage">
                             <div class="carousel-caption">
-                                <span>用Spark學習矩陣分解推薦算法</span>
+                                <span>微信公眾號爬蟲</span>
                             </div>
                         </a>
                     </div>
                     <div class="item">
-                        <a href="{{url_for('.post',name='code',pageid='6')}}">
-                            <img src="../static/pic/code/6_1.jpg" alt="Emancipation Stories">
+                        <a href="{{url_for('.post',name='code',pageid='4')}}">
+                            <img src="../static/pic/code/4_1.jpg" alt="Bartlesville Community Foundation">
                             <div class="carousel-caption">
-                                <span>用Spark分析Amazon的8000萬商品評價(內含數據集、代碼、論文)</span>
+                                <span>“今日頭條”怎麼計算：“網絡爬蟲+相似矩陣”技術運作流程</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="{{url_for('.post',name='code',pageid='3')}}">
+                            <img src="../static/pic/code/3_1.jpg" alt="Emancipation Stories">
+                            <div class="carousel-caption">
+                                <span>python中理解字符串和編碼為什麼這麼難</span>
                             </div>
                         </a>
                     </div>
@@ -159,23 +159,7 @@
                 </div>
             </div>
             <div class="slider">
-                <div class="article_like">
-                    <strong>猜你喜歡</strong>
-                    <ul>
-                        <li><a href="{{url_for('.post',name='analysis',pageid='4')}}">
-                        2016大數據創新大賽——機場客流量的時空分佈預測模型解析</a></li>
-                        <li><a href="{{url_for('.post',name='code',pageid='5')}}">
-                        用Spark學習矩陣分解推薦算法</a></li>
-                        <li><a href="{{url_for('.post',name='code',pageid='6')}}">
-                        用Spark分析Amazon的8000萬商品評價(內含數據集、代碼、論文)</a></li>
-                        <li><a href="{{url_for('.post',name='analysis',pageid='3')}}">
-                        見山只是山，見水只是水，數據分析禪宗三境界</a></li>
-                        <li><a href="{{url_for('.post',name='news',pageid='2')}}">
-                        數據解讀：一盒杜蕾斯的成本價格構成</a></li>
-                        <li><a href="../aboutus">
-                        About Big Data Insight</a></li>
-                    </ul>
-                </div>
+                {% include '_article.like.html' %}
             </div>
         </div>
     </div>

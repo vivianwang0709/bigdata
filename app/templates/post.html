@@ -90,23 +90,7 @@
                 </div>
             </div>
             <div class="slider">
-                <div class="article_like">
-                    <strong>猜你喜歡</strong>
-                    <ul>
-                        <li><a href="{{url_for('.post',name='analysis',pageid='4')}}">
-                        2016大數據創新大賽——機場客流量的時空分佈預測模型解析</a></li>
-                        <li><a href="{{url_for('.post',name='code',pageid='5')}}">
-                        用Spark學習矩陣分解推薦算法</a></li>
-                        <li><a href="{{url_for('.post',name='code',pageid='6')}}">
-                        用Spark分析Amazon的8000萬商品評價(內含數據集、代碼、論文)</a></li>
-                        <li><a href="{{url_for('.post',name='analysis',pageid='3')}}">
-                        見山只是山，見水只是水，數據分析禪宗三境界</a></li>
-                        <li><a href="{{url_for('.post',name='news',pageid='2')}}">
-                        數據解讀：一盒杜蕾斯的成本價格構成</a></li>
-                        <li><a href="../aboutus">
-                        About Big Data Insight</a></li>
-                    </ul>
-                </div>
+                {% include '_article.like.html' %}
             </div>
         </div>
     </div>
