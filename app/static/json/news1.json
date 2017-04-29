@@ -1,1 +1,37 @@
-[{"article_type": "analysis", "scontent": "\u4f60\u7528\u904e\u00a0Google Trends\u00a0\u55ce\uff1f\u76f8\u7576\u9177\uff0c\u8f38\u5165\u4e00\u4e9b\u95dc\u9375\u8a5e\uff0c\u7136\u5f8c\u80fd\u770b\u5230\u5b83\u5011\u5728\u8c37\u6b4c\u4e2d\u7684\u641c\u7d22\u8da8\u52e2\u8b8a\u5316\u3002\u525b\u597d\u00a0arxiv-sanity\u00a0\u8ad6\u6587\u6578\u64da\u5eab\u5728\u904e\u53bb 5 \u5e74\u5167\u6709 28303 \u4efd\u6a5f\u5668\u5b78\u7fd2\u76f8\u95dc\u8ad6\u6587\uff0c\u6240\u4ee5\u6211\u60f3\uff0c\u70ba\u4ec0\u9ebc\u4e0d\u505a\u4e00\u4e9b\u985e\u4f3c\u7684\u4e8b\u60c5\uff0c\u4f86\u770b\u770b\u6a5f\u5668\u5b78\u7fd2\u7814\u7a76\u5728\u904e\u53bb 5 \u5e74\u662f\u5982\u4f55\u9032\u5c55\u7684\uff1f\u7d50\u679c\u76f8\u7576\u6709\u8da3\uff0c\u6240\u4ee5\u6211\u60f3\u6211\u8a72\u5beb\u7bc7\u6587\u7ae0\u5206\u4eab\u4e00\u4e0b\u3002", "title": "\u6a5f\u5668\u5b78\u7fd2\u6d41\u884c\u8da8\u52e2\u4e00\u89bd | 36\u5927\u6578\u64da", "date": "2017-04-25", "pid": 1}, {"article_type": "learn", "scontent": "\u7db2\u7d61\u4e0a\u6709\u5f88\u591a\u7b54\u6848\uff1a\u6bd4\u5982\u7522\u54c1\u7d93\u7406\u8ca0\u8cac\u628a\u7522\u54c1\u751f\u4e0b\u4f86\uff0c\u904b\u71df\u8ca0\u8cac\u628a\u5b83\u990a\u5927\uff1b\u6bd4\u5982\u5171\u7a7f\u4e00\u689d\u8932\u5b50\u7684\u597d\u57fa\u53cb\uff0c\u7b49\u7b49\u3002", "title": "\u95dc\u65bc\u904b\u71df\u3001\u95dc\u65bc\u7522\u54c1\u3001\u95dc\u65bc\u6578\u64da\u3001\u95dc\u65bc\u878d\u5408 | 36\u5927\u6578\u64da", "date": "2017-04-25", "pid": 2}, {"article_type": "learn", "scontent": "\u4f60\u5011\u731c\u731c\uff0c\u4f5c\u70ba\u7a0b\u5e8f\u54e1\u4f60\u5011\u6700\u8a0e\u53ad\u505a\u7684\u4e8b\u662f\u4ec0\u9ebc\uff1f\u7522\u54c1\u7d93\u7406\u983b\u7e41\u4fee\u6539\u9700\u6c42\uff1f\u4e0d\u662f\u3002\u6e2c\u8a66\u5929\u5929\u7d66\u4f60\u63d0\u4ea4\u4e0d\u53ef\u7406\u55bb\u7684 bug \uff1f\u4e5f\u4e0d\u662f\u3002\u63a5\u624b\u5225\u4eba\u4ea4\u63a5\u7684\u5982\u706b\u661f\u6587\u4e00\u6a23\u7684\u721b\u4ee3\u78bc\uff1f\u5176\u5be6\u4e5f\u4e0d\u662f\u3002", "title": "\u7a0b\u5e8f\u54e1\u6700\u8a0e\u53ad\u7684\u4e0d\u662f\u7522\u54c1\u7d93\u7406\uff0c\u800c\u662f\u2026\u2026 | BIN\u5927\u6578\u64da", "date": "2017-04-25", "pid": 3}]
+[
+    {
+        "title": "作為大數據從業人員，如何寫好一份可堪入目的簡歷? | BIN 大數據",
+        "pid": 1,
+        "date": "2017-04-27",
+        "scontent": "近期部門在做人員招聘，所以一直在堅持看簡歷，包括也面了部分相關崗位的候選者，有些感觸還是蠻大的。",
+        "article_type": "code"
+    },
+    {
+        "title": "谷歌微軟等科技巨頭數據科學面試107道真題：你能答出多少？ | BIN 大數據",
+        "pid": 2,
+        "date": "2017-04-27",
+        "scontent": "來自 Glassdoor 的最新數據可以告訴我們各大科技公司最近在招聘面試時最喜歡向候選人提什麼問題。首先有一個令人惋惜的結論：根據統計，幾乎所有的公司都有著自己的不同風格。由於 Glassdoor 允許匿名提交內容，很多樂於分享的應聘者向大家提供了 Facebook、谷歌、微軟等大公司的面試題。我們把其中的一部分列出以供大家參考。",
+        "article_type": "code"
+    },
+    {
+        "title": "python中理解字符串和編碼為什麼這麼難 | BIN 大數據",
+        "pid": 3,
+        "date": "2017-04-27",
+        "scontent": "在學習python2的時候,字符串和編碼可以說是最讓人困惑的知識點,假如知其然而不知其所以然,則在後續的寫代碼和學習過程中會讓人很痛苦,甚至會放棄,而對比PHP語言來說,即使完全不瞭解編碼等知識,也可以寫出代碼,這是幸事,但反過來說太透明會讓你失去很多能力.",
+        "article_type": "code"
+    },
+    {
+        "title": "“今日頭條”怎麼計算：“網絡爬蟲+相似矩陣”技術運作流程 | BIN 大數據",
+        "pid": 4,
+        "date": "2017-04-27",
+        "scontent": "今日頭條這類資訊聚合平臺是基於數據挖掘技術，篩選和推薦新聞：“它為用戶推薦有價值的、個性化的信息，提供連接人與信息的新型服務，是國內移動互聯網領域成長最快的產品服務之一”。自從2012年3月創建以來，今日頭條至今已經累計激活用戶3.1億，日活躍用戶超過3000萬。",
+        "article_type": "code"
+    },
+    {
+        "title": "微信公眾號爬蟲 | BIN 大數據",
+        "pid": 5,
+        "date": "2017-04-27",
+        "scontent": "無論是新方案還是舊方案, 獲取公眾號文章列表, 獲取閱讀點贊, 獲取評論等接口可以通過抓包來獲取",
+        "article_type": "code"
+    }
+]
