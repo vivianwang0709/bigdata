@@ -53,6 +53,7 @@ class Article(db.Model):
             json.dump(result,file)
             file.close()
 
+
     def __repr__(self):
         return '<Article %r>' % self.pid
 

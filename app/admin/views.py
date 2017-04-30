@@ -6,7 +6,7 @@ from flask_login import login_user, logout_user, login_required, \
 from .. import db
 from ..models import User,Article
 from . import admin
-from .forms import LoginForm,UploadForm
+from .forms import LoginForm,UploadForm,EditForm
 from .crawler import *
 from .autojson import *
 
@@ -17,6 +17,28 @@ import datetime
 # @admin.route('/success')
 # def success():
 #     return render_template('back/success.html')
+
+@admin.route('/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit(id):
+    article = Article.query.get_or_404(id)
+    form = EditForm()
+    if form.validate_on_submit():
+        article.title = form.title.data
+        article.scontent = form.scontent.data
+        article.content = form.content.data
+        article.article_type = dict(form.article_type.choices).get(form.article_type.data)
+        db.session.add(article)
+        db.session.commit()
+        flash('The article has been updated')
+        return redirect(url_for('main.post',name=article.article_type,pageid=id))
+
+    form.title.data = article.title
+    form.article_type.data = article.article_type
+    form.scontent.data = article.scontent
+    form.content.data = article.content
+    return render_template('back/edit_post.html', form=form)
+
 
 @admin.route('/jsonfile')
 @login_required
@@ -56,7 +78,6 @@ def upload():
         article.author = form.author.data
         db.session.add(article)
         db.session.commit()
-
         return render_template('back/success.html')
     form.author.data = 'vivian'
     return render_template('back/upload.html', form=form)

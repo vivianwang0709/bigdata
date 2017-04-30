@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField
 from wtforms.validators import Required
 from wtforms import ValidationError
+from flask_pagedown.fields import PageDownField
 
 
 class LoginForm(FlaskForm):
@@ -17,3 +18,10 @@ class UploadForm(FlaskForm):
     article_type = SelectField('Article Type',choices=[('1','code'),('2','analysis'),('3','news'),('4','learn')])
 	#tag = SelectField('Tag')
     submit = SubmitField('Upload')
+
+class EditForm(FlaskForm):
+    title = PageDownField("Article Title", validators=[Required()])
+    article_type = SelectField('Article Type',choices=[('1','code'),('2','analysis'),('3','news'),('4','learn')])
+    scontent = PageDownField("Article Scontent", validators=[Required()])
+    content = PageDownField("Article Content", validators=[Required()])
+    submit = SubmitField("Save it")
