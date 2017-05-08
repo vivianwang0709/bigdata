@@ -27,7 +27,6 @@ def create_app(config_name):
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
-    #設置url_prefix屬性，會使路由都加上此前綴
     from .admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint, url_prefix='/back')
 
