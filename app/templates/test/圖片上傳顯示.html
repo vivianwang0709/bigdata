@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>立即显示上传的图片</title>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(function() {
+        /*原理是把本地图片路径："D(盘符):/image/..."转为"http://..."格式路径来进行显示图片*/
+        $("#fileupload").change(function() {
+            var $file = $(this);
+            var objUrl = $file[0].files[0];
+            console.log(objUrl);
+            //获得一个http格式的url路径:mozilla(firefox)||webkit or chrome  
+            var windowURL = window.URL || window.webkitURL;
+            //createObjectURL创建一个指向该参数对象(图片)的URL  
+            var dataURL;
+            dataURL = windowURL.createObjectURL(objUrl);
+            $("#imageview").attr("src", dataURL);
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <input id="fileupload" type="file" />
+    <img id="imageview">
+</body>
+
+</html>

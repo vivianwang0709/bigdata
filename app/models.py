@@ -1,9 +1,9 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-import json
+import json,os
 from . import db, login_manager
-import os
-
+from markdown import markdown
+import bleach
 
 
 class User(UserMixin, db.Model):
@@ -34,6 +34,7 @@ class Article(db.Model):
     title = db.Column(db.String(1000))
     author = db.Column(db.String(128))
     content = db.Column(db.Text())
+    mkcontent = db.Column(db.Text())
     scontent = db.Column(db.Text())
     date = db.Column(db.String(128),index=True)
     article_type = db.Column(db.String(128), index=True)
@@ -53,10 +54,20 @@ class Article(db.Model):
             json.dump(result,file)
             file.close()
 
+    @staticmethod
+    def convert(mkcontent):
+        allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code',
+                        'em', 'i', 'li', 'ol', 'pre', 'strong', 'ul',
+                        'h1', 'h2', 'h3', 'p']
+        content = bleach.linkify(bleach.clean(
+            markdown(mkcontent, output_format='html'),
+            tags=allowed_tags, strip=True))
+        return content
 
     def __repr__(self):
         return '<Article %r>' % self.pid
 
+# db.event.listen(Article.mkcontent, 'set', Article.convert)
 
 
 @login_manager.user_loader

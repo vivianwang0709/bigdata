@@ -6,12 +6,13 @@ from flask_login import login_user, logout_user, login_required, \
 from .. import db
 from ..models import User,Article
 from . import admin
-from .forms import LoginForm,UploadForm,EditForm
+from .forms import LoginForm,UploadForm,EditForm,mkUploadForm
 from .crawler import *
 from .autojson import *
 
 import os
 import datetime
+from werkzeug import secure_filename
 
 
 # @admin.route('/success')
@@ -31,7 +32,7 @@ def edit(id):
         db.session.add(article)
         db.session.commit()
         flash('The article has been updated')
-        return redirect(url_for('main.post',name=article.article_type,pageid=id))
+        #return redirect(url_for('main.post',name=article.article_type,pageid=id))
 
     form.title.data = article.title
     form.article_type.data = article.article_type
@@ -48,10 +49,47 @@ def jsonfile():
 
 
 
-@admin.route('/upload', methods=['GET', 'POST'])
+@admin.route('/upload')
 @login_required
 def upload():
+    return render_template('back/upload.html')
 
+@admin.route('/upload_mk', methods=['GET', 'POST'])
+@login_required
+def upload_mk():
+    article = Article()
+    form = mkUploadForm()
+    path = os.getcwd()
+    if form.validate_on_submit():
+        try:
+            pid = Article.query.order_by(Article.pid.desc()).first().pid + 1
+        except:
+            pid = 1
+
+        article_type = dict(form.article_type.choices).get(form.article_type.data)
+        content = article.convert(form.mkcontent.data)
+        article.title = form.title.data
+        article.author = form.author.data
+        article.article_type = article_type
+        article.scontent = form.scontent.data
+        article.content = content
+        article.mkcontent = form.mkcontent.data
+        #filename = secure_filename(form.file.data.filename)
+        #form.file.data.save(os.path.expanduser(path+'/app/static/pic/'+ article_type + "/" +str(pid)+"_1.jpg" ))
+        form.file.data.save('/app/app/static/pic'+ article_type + "/" +str(pid)+"_1.jpg" )
+        db.session.add(article)
+        db.session.commit()
+        return render_template('back/success.html',text='form.file.data')
+
+    form.title.data = '| BIN 大數據'
+    form.author.data = 'vivian'
+    return render_template('back/upload_mk.html', form=form)
+
+
+
+@admin.route('/upload_36', methods=['GET', 'POST'])
+@login_required
+def upload_36():
     article = Article()
     form = UploadForm()
     if form.validate_on_submit():
@@ -80,7 +118,7 @@ def upload():
         db.session.commit()
         return render_template('back/success.html')
     form.author.data = 'vivian'
-    return render_template('back/upload.html', form=form)
+    return render_template('back/upload_36.html', form=form)
 
 
 
