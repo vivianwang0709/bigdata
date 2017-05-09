@@ -37,6 +37,15 @@ class mkUploadForm(FlaskForm):
     scontent = TextAreaField("Article Scontent", validators=[Required()])    
     mkcontent = PageDownField("MarkDown Content", validators=[Required()])
     submit = SubmitField('Submit')
+    review = SubmitField('Review')
+
+
+class textUploadForm(FlaskForm):
+    title = StringField("Article Title", validators=[Required()])
+    author = StringField('Author', validators=[Required()])
+    article_type = SelectField('Article Type',choices=[('1','code'),('2','analysis'),('3','news'),('4','learn')])
+    submit = SubmitField('Submit')
+    review = SubmitField('Review')
 
 
 

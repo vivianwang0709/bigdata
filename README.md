@@ -18,6 +18,8 @@
 	* 理解 bootstrap ＆ flask & javascript 基本 
 
 
+
+
 # v2
 -------
 * 時間：2017.03.01-2017.04.15
@@ -29,6 +31,8 @@
 * 學習點
 	* less
 	* jquery & bootstrap.js:carousel.js
+
+
 
 
 # v3
@@ -48,27 +52,32 @@
 	＊ 優化crawler.py
 	＊ 添加文章修改模板
 	＊ 添加文章上傳：markdown模式
-	＊ 添加文章上傳：文字編譯器模式
+	＊ 添加預覽模式
+	＊ 添加開源文字編譯器模式-CKeditor
 
 * 建置
 	* 2017.04.25 遷移至heroku.com，網址為http://bigdatainsight.herokuapp.com/
 	* 將程式遷入版本管理工具git
+
+
+
+# v4
+--------
+* 時間：2017
+* 前端
+	* seo優化 & 運用ga
+	* 串接社群api
+	* 添加：上傳動態顯示
+* 後端
+	* 文章整理器
+	* 多文件上傳實現
+	* 添加權限功能
 
 ＊bug紀錄：
 	＊ 登入需限制只使用https
 	＊ https請求，ajax出現問題
 	＊ jquery報錯問題修復 
 
-
-# v4
---------
-* 時間：
-* 前端
-	* seo優化 & 運用ga
-	* 串接社群api
-	* 添加：後台模板
-* 後端
-* 學習點
 * 建置：
 	＊ 遷移至AWS
 

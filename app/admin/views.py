@@ -1,4 +1,5 @@
-from flask import render_template, redirect, request, url_for, flash
+from flask import render_template, redirect, request, url_for, flash, \
+    make_response
 from flask_login import login_user, logout_user, login_required, \
     current_user
 
@@ -6,12 +7,11 @@ from flask_login import login_user, logout_user, login_required, \
 from .. import db
 from ..models import User,Article
 from . import admin
-from .forms import LoginForm,UploadForm,EditForm,mkUploadForm
+from .forms import LoginForm,UploadForm,EditForm,mkUploadForm,textUploadForm
 from .crawler import *
 from .autojson import *
 
-import os
-import datetime
+import os,datetime,json,random
 from werkzeug import secure_filename
 
 
@@ -41,6 +41,7 @@ def edit(id):
     return render_template('back/edit_post.html', form=form)
 
 
+
 @admin.route('/jsonfile')
 @login_required
 def jsonfile():
@@ -54,13 +55,62 @@ def jsonfile():
 def upload():
     return render_template('back/upload.html')
 
+
+def gen_rnd_filename():
+    filename_prefix = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+    return '%s%s' % (filename_prefix, str(random.randrange(1000, 10000)))
+
+
+@admin.route('/ckupload/', methods=['POST', 'OPTIONS'])
+@login_required
+def ckupload():
+    """CKEditor file upload"""
+    error = ''
+    url = ''
+    callback = request.args.get("CKEditorFuncNum")
+
+    if request.method == 'POST' and 'upload' in request.files:
+        fileobj = request.files['upload']
+        fname, fext = os.path.splitext(fileobj.filename)
+        rnd_name = '%s%s' % (gen_rnd_filename(), fext)
+        filepath = os.path.join(os.getcwd()+'/app/static', 'upload', rnd_name)
+        fileobj.save(filepath)
+        url = url_for('static', filename='%s/%s' % ('upload', rnd_name))
+
+    else:
+        error = 'post error'
+
+    res = """<script type="text/javascript">
+  window.parent.CKEDITOR.tools.callFunction(%s, '%s', '%s');
+</script>""" % (callback, url, error)
+
+    response = make_response(res)
+    response.headers["Content-Type"] = "text/html"
+    return response
+
+
+@admin.route('/upload_text', methods=['GET', 'POST'])
+@login_required
+def upload_text():
+    form = textUploadForm()
+    if form.submit.data is True:
+        return render_template('back/success.html',text=request.form['editor'])
+
+    if form.review.data is True:
+        return render_template('back/review.html', form=form, content=request.form['editor'])
+
+    form.title.data = '| BIN 大數據'
+    form.author.data = 'vivian'
+    return render_template('back/upload_text.html', form=form)
+
+
 @admin.route('/upload_mk', methods=['GET', 'POST'])
 @login_required
 def upload_mk():
     article = Article()
     form = mkUploadForm()
     path = os.getcwd()
-    if form.validate_on_submit():
+    if form.submit.data is True:
         try:
             pid = Article.query.order_by(Article.pid.desc()).first().pid + 1
         except:
@@ -75,11 +125,15 @@ def upload_mk():
         article.content = content
         article.mkcontent = form.mkcontent.data
         #filename = secure_filename(form.file.data.filename)
-        #form.file.data.save(os.path.expanduser(path+'/app/static/pic/'+ article_type + "/" +str(pid)+"_1.jpg" ))
-        form.file.data.save('/app/app/static/pic'+ article_type + "/" +str(pid)+"_1.jpg" )
-        db.session.add(article)
-        db.session.commit()
-        return render_template('back/success.html',text='form.file.data')
+        form.file.data.save(os.path.expanduser(path+'/app/static/pic/'+ article_type + "/" +str(pid)+"_1.jpg" ))
+        #form.file.data.save('/app/app/static/pic'+ article_type + "/" +str(pid)+"_1.jpg" )
+        #db.session.add(article)
+        #db.session.commit()
+        return render_template('back/success.html',text=form.review.data)
+
+    if form.review.data is True:
+        content = article.convert(form.mkcontent.data)
+        return render_template('back/review.html',form=form,content=content)
 
     form.title.data = '| BIN 大數據'
     form.author.data = 'vivian'
@@ -117,6 +171,7 @@ def upload_36():
         db.session.add(article)
         db.session.commit()
         return render_template('back/success.html')
+    
     form.author.data = 'vivian'
     return render_template('back/upload_36.html', form=form)
 

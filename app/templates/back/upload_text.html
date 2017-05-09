@@ -1,8 +1,14 @@
 {% extends "back/base.html" %}
 {% import "bootstrap/wtf.html" as wtf %} 
 
-{% block title %}BIN - Login{% endblock %}
+{% block title %}BIN - Upload{% endblock %}
 
+{% block head %}
+
+{{ super() }}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="//cdn.ckeditor.com/4.4.6/full/ckeditor.js"></script>
+{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -17,37 +23,29 @@
     {% block page_content %}
     
     <div class="page-header">
-        <h1>MarkDown Upload</h1>
+        <h1> Text Upload Mode</h1>
     </div>
 
-    <form class="form form-horizontal" enctype="multipart/form-data" method="post" role="form">
-    {{ form.hidden_tag() }}
-    {{ wtf.form_errors(form, hiddens="only") }}
-    <div class="col-md-4">
+    <div class="col-md-12">
+        <form method="post" role="form">
         {{ wtf.form_field(form.title) }}
         {{ wtf.form_field(form.author) }}
         {{ wtf.form_field(form.article_type) }}
-        {{ wtf.form_field(form.scontent) }}
-        {{ wtf.form_field(form.file) }}
         {{ wtf.form_field(form.submit) }}
         {{ wtf.form_field(form.review) }}
-    </br>
-    </br>
+            <br>
+            <br>
+            <textarea name='editor' id="content" class="ckeditor" rows="10" cols="80">
+            </textarea>
+        </form>    
     </div>
-
-    <div class="col-md-4 col-md-offset-1">
-        {{ wtf.form_field(form.mkcontent) }}
-    </div>
-
-    </form>
-    
-    <a href="{{ url_for('.jsonfile') }}">BIN</a>
+    <script type="text/javascript">
+CKEDITOR.replace('content', {
+    filebrowserUploadUrl: '/back/ckupload/',
+});
+</script>
     {% endblock %}
 
 </div>
 {% endblock %}
 
-{% block scripts %}
-{{ super() }}
-{{ pagedown.html_head() }}
-{% endblock %}
