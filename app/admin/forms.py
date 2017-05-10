@@ -22,11 +22,15 @@ class UploadForm(FlaskForm):
 
 
 class EditForm(FlaskForm):
-    title = PageDownField("Article Title", validators=[Required()])
+    title = TextAreaField("Article Title", validators=[Required()])
+    author = StringField('Author', validators=[Required()])
     article_type = SelectField('Article Type',choices=[('1','code'),('2','analysis'),('3','news'),('4','learn')])
-    scontent = PageDownField("Article Scontent", validators=[Required()])
-    content = PageDownField("Article Content", validators=[Required()])
+    file = FileField('File Upload',render_kw={'multiple':True})
+    scontent = TextAreaField("Article Scontent", validators=[Required()])
+    content = TextAreaField("Article Content", validators=[Required()])
+    mkcontent = PageDownField("MarkDown Content", validators=[Required()])
     submit = SubmitField("Save it")
+    review = SubmitField('Review')
 
 
 class mkUploadForm(FlaskForm):
@@ -44,6 +48,7 @@ class textUploadForm(FlaskForm):
     title = StringField("Article Title", validators=[Required()])
     author = StringField('Author', validators=[Required()])
     article_type = SelectField('Article Type',choices=[('1','code'),('2','analysis'),('3','news'),('4','learn')])
+    scontent = TextAreaField("Article Scontent", validators=[Required()])    
     submit = SubmitField('Submit')
     review = SubmitField('Review')
 

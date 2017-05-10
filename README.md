@@ -75,6 +75,7 @@
 	* 添加權限功能
 
 ＊bug紀錄：
+	＊ crawler路徑問題優化
 	＊ 登入需限制只使用https
 	＊ https請求，ajax出現問題
 	＊ jquery報錯問題修復 

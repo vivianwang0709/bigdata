@@ -31,11 +31,13 @@
         {{ wtf.form_field(form.title) }}
         {{ wtf.form_field(form.author) }}
         {{ wtf.form_field(form.article_type) }}
+        {{ wtf.form_field(form.scontent) }}
         {{ wtf.form_field(form.submit) }}
         {{ wtf.form_field(form.review) }}
             <br>
             <br>
             <textarea name='editor' id="content" class="ckeditor" rows="10" cols="80">
+            {{editor}}
             </textarea>
         </form>    
     </div>

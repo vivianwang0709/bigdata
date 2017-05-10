@@ -62,7 +62,7 @@ def get_info(pid,url,path,article_type):
     for a_tag in soup.article.find_all('img'):
         pcount = pcount + 1
         download_img(pid,a_tag['src'],path,pcount,article_type)
-        a_tag['src'] = "../static/pic/"+article_type+"/"+pid+"_"+str(pcount)+".jpg"
+        a_tag['src'] = "/static/pic/"+article_type+"/"+pid+"_"+str(pcount)+".jpg"
         a_tag['class'] = "36img"
         del a_tag['width'],a_tag['height'],a_tag['sizes'],a_tag['srcset']
     content = chs_to_cht(str(soup.article))

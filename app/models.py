@@ -32,6 +32,7 @@ class Article(db.Model):
     __tablename__ = 'article'
     pid = db.Column(db.BigInteger, primary_key=True)
     title = db.Column(db.String(1000))
+    mode = db.Column(db.String(64))
     author = db.Column(db.String(128))
     content = db.Column(db.Text())
     mkcontent = db.Column(db.Text())
@@ -44,15 +45,26 @@ class Article(db.Model):
     pic_count = db.Column(db.Integer)
     sort = db.Column(db.Integer)
 
-    def make_json_auto(self):
-        data = self.query.all()
-        cols = ['pid','scontent','date','article_type','title']
-        result = [{col: getattr(d, col) for col in cols} for d in data]
-        path = os.getcwd()
-        with open(os.path.expanduser(path+"/app/static/json/news1.json"), 'w+') as file:
-        #with open("/app/app/static/json/news1.json", 'w+') as file:
-            json.dump(result,file)
-            file.close()
+    def formtosave(self,form):
+        try:
+            pid = self.query.order_by(Article.pid.desc()).first().pid + 1
+        except:
+            pid = 1
+        self.pid = pid
+        article_type = dict(form.article_type.choices).get(form.article_type.data)
+        self.article_type = article_type
+        self.title = form.title.data
+        self.author = form.author.data
+        self.scontent = form.scontent.data
+
+        if self.mode =='mk':
+            path = os.getcwd()
+            self.content = self.convert(form.mkcontent.data)
+            self.mkcontent = form.mkcontent.data
+            form.file.data.save(os.path.expanduser(path+'/app/static/pic/'+ self.article_type + "/" +str(pid)+"_1.jpg" ))
+            #form.file.data.save('/app/app/static/pic'+ article_type + "/" +str(pid)+"_1.jpg" )
+        db.session.add(self)
+        db.session.commit()
 
     @staticmethod
     def convert(mkcontent):

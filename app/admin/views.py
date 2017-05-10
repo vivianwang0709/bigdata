@@ -24,23 +24,28 @@ from werkzeug import secure_filename
 def edit(id):
     article = Article.query.get_or_404(id)
     form = EditForm()
-    if form.validate_on_submit():
-        article.title = form.title.data
-        article.scontent = form.scontent.data
+    if form.submit.data is True:
+        article.forms(form)
         article.content = form.content.data
-        article.article_type = dict(form.article_type.choices).get(form.article_type.data)
-        db.session.add(article)
-        db.session.commit()
         flash('The article has been updated')
         #return redirect(url_for('main.post',name=article.article_type,pageid=id))
 
+    if form.review.data is True:
+        if article.mode == 'mk':
+            form.content.data = article.convert(form.mkcontent.data)
+        return render_template('back/review.html', form=form, content=form.content.data)
+
     form.title.data = article.title
+    form.author.data = article.author
     form.article_type.data = article.article_type
     form.scontent.data = article.scontent
     form.content.data = article.content
-    return render_template('back/edit_post.html', form=form)
-
-
+    form.mkcontent.data = article.mkcontent
+    if article.mode == 'mk':
+        return render_template('back/upload_mk.html', form=form)
+    else:
+        return render_template('back/upload_text.html', form=form ,editor=article.content)
+   
 
 @admin.route('/jsonfile')
 @login_required
@@ -92,8 +97,12 @@ def ckupload():
 @admin.route('/upload_text', methods=['GET', 'POST'])
 @login_required
 def upload_text():
+    article = Article()
     form = textUploadForm()
     if form.submit.data is True:
+        article.mode = 'text'
+        article.formtosave(self,form)
+        article.content = request.form['editor']
         return render_template('back/success.html',text=request.form['editor'])
 
     if form.review.data is True:
@@ -104,31 +113,15 @@ def upload_text():
     return render_template('back/upload_text.html', form=form)
 
 
+
 @admin.route('/upload_mk', methods=['GET', 'POST'])
 @login_required
 def upload_mk():
     article = Article()
     form = mkUploadForm()
-    path = os.getcwd()
     if form.submit.data is True:
-        try:
-            pid = Article.query.order_by(Article.pid.desc()).first().pid + 1
-        except:
-            pid = 1
-
-        article_type = dict(form.article_type.choices).get(form.article_type.data)
-        content = article.convert(form.mkcontent.data)
-        article.title = form.title.data
-        article.author = form.author.data
-        article.article_type = article_type
-        article.scontent = form.scontent.data
-        article.content = content
-        article.mkcontent = form.mkcontent.data
-        #filename = secure_filename(form.file.data.filename)
-        form.file.data.save(os.path.expanduser(path+'/app/static/pic/'+ article_type + "/" +str(pid)+"_1.jpg" ))
-        #form.file.data.save('/app/app/static/pic'+ article_type + "/" +str(pid)+"_1.jpg" )
-        #db.session.add(article)
-        #db.session.commit()
+        article.mode = 'mk'
+        article.formtosave(form,path)
         return render_template('back/success.html',text=form.review.data)
 
     if form.review.data is True:
@@ -159,6 +152,7 @@ def upload_36():
 
         #[title,content,scontent,pcount]
         cdata = get_info(str(pid) , url, path+"/app/static/pic", article_type)
+        article.mode = 'crawler'
         article.pid = pid
         article.date = datetime.datetime.now().date().strftime("%Y-%m-%d")
         article.title = cdata[0]
