@@ -50,10 +50,11 @@
 	＊ 添加簡轉繁模塊
 	＊ 添加文章上傳：crawler模式
 	＊ 優化crawler.py
-	＊ 添加文章修改模板
 	＊ 添加文章上傳：markdown模式
 	＊ 添加預覽模式
-	＊ 添加開源文字編譯器模式-CKeditor
+	＊ 添加開源文字編譯器模式-CKeditor：https://segmentfault.com/a/1190000002436865
+	＊ 添加三種文章修改模板
+
 
 * 建置
 	* 2017.04.25 遷移至heroku.com，網址為http://bigdatainsight.herokuapp.com/

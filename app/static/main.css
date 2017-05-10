@@ -6612,8 +6612,8 @@ button.close {
   font-size: 15px;
 }
 .detail > p {
-  font-size: 22px;
-  font-weight: bold;
+/*  font-size: 22px;
+*/  font-weight: bold;
 }
 @media (max-width: 720px) {
   .detail > p {
