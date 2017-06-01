@@ -1,0 +1,13 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+<div class="content">
+            <div class="detail">
+                {% block detail %}
+                <h2> {{ posts[0].title }} </h2> {{ posts[0].content|safe}} {% endblock %}
+            </div>
+            <div class="slider slider-article">
+                {% include 'main/_article.like.html' %}
+            </div>
+</div>
+{% endblock %}

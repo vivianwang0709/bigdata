@@ -25,7 +25,7 @@ def edit(id):
     article = Article.query.get_or_404(id)
     form = EditForm()
     if form.submit.data is True:
-        article.forms(form)
+        article.formtosave(form)
         article.content = form.content.data
         flash('The article has been updated')
         #return redirect(url_for('main.post',name=article.article_type,pageid=id))
@@ -101,7 +101,7 @@ def upload_text():
     form = textUploadForm()
     if form.submit.data is True:
         article.mode = 'text'
-        article.formtosave(self,form)
+        article.formtosave(form)
         article.content = request.form['editor']
         return render_template('back/success.html',text=request.form['editor'])
 
@@ -121,7 +121,7 @@ def upload_mk():
     form = mkUploadForm()
     if form.submit.data is True:
         article.mode = 'mk'
-        article.formtosave(form,path)
+        article.formtosave(form)
         return render_template('back/success.html',text=form.review.data)
 
     if form.review.data is True:

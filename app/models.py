@@ -50,6 +50,7 @@ class Article(db.Model):
             pid = self.query.order_by(Article.pid.desc()).first().pid + 1
         except:
             pid = 1
+
         self.pid = pid
         article_type = dict(form.article_type.choices).get(form.article_type.data)
         self.article_type = article_type
@@ -63,6 +64,7 @@ class Article(db.Model):
             self.mkcontent = form.mkcontent.data
             form.file.data.save(os.path.expanduser(path+'/app/static/pic/'+ self.article_type + "/" +str(pid)+"_1.jpg" ))
             #form.file.data.save('/app/app/static/pic'+ article_type + "/" +str(pid)+"_1.jpg" )
+
         db.session.add(self)
         db.session.commit()
 

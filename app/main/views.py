@@ -6,13 +6,14 @@ from ..models import User,Article
 
 @main.route('/')
 def home():
-    return render_template('home.html')
+    article = Article.query.order_by(Article.pid.desc()).all()
+    return render_template('main/home.html',article=article)
 
 
 #路由：關於我
 @main.route('/aboutus')
 def about():
-    return render_template('aboutus.html')
+    return render_template('main/aboutus.html')
 
 
 #文章分類頁：article/news
@@ -24,7 +25,8 @@ def post(name):
 
     if pageid is not None:
         posts = Article().query.filter_by(pid=pageid).all()
-        return render_template('article.html',posts=posts)
+        return render_template('main/article.html',posts=posts)
         #return render_template('article/'+name+'_'+str(pageid)+'.html')
     if name in tag:
-        return render_template('post.html',title=tag[name])
+        article = Article.query.filter_by(article_type=name).order_by(Article.pid.desc()).all()
+        return render_template('main/post.html',article=article,title=tag[name])

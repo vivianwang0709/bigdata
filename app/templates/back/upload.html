@@ -16,10 +16,13 @@
     <div class="page-header">
         <h1>Upload Mode Choose</h1>
     </div>
-    <div class="col-md-4">
-        <button class="button button1"><a href="{{ url_for('admin.upload_mk') }}"> Markdown Mode</button>
-        <button class="button button2"><a href="{{ url_for('admin.upload_text') }}">Text Mode</button>
-        <button class="button button1"><a href="{{ url_for('admin.upload_36') }}">36dsj Mode</button>
+    <div class="col-xs-12 col-md-10">
+        <a href="{{ url_for('admin.upload_mk') }}">
+        <button  type="button" class="btn btn-info btn-lg"> Markdown</button></a>
+        <a href="{{ url_for('admin.upload_text') }}">
+        <button type="button" class="btn btn-info btn-lg">Text</button></a>
+        <a href="{{ url_for('admin.upload_36') }}">
+        <button type="button" class="btn btn-info btn-lg"">36dsj</button></a>
     </div>
     {% endblock %}
 

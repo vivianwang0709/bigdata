@@ -1,0 +1,53 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+<div class="content">
+{{super()}}
+            <div class="post" data-ride='post'>
+                <div class="article">
+                    <div class="a_img">
+                        <a href="{{url_for('.about')}}">
+                            <img src="../static/pic/other/aboutus_1.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="a_right">
+                        <div class="a_title">
+                            <p>About Big Data Insight</p>
+                        </div>
+                        <div class="a_editor"></div>
+                        <div class="a_date"></div>
+                        <div class="a_content">
+                            <p>在學習大數據的過程中，常常發現一些有趣文章和優秀教程，想好好保存起來， 卻總是缺乏系統性的整理，因此文章保存每每散落在各個角落，每次翻找就像大海撈針一般， 因此做了這個網站</p>
+                        </div>
+                        <div class="a_tag">
+                            <p><a class="btn btn-primary pull-right" href="{{url_for('.about')}}">Read more<span class=""></span></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% for post in article %}
+    <div class="post" data-ride='post'>
+                <div class="article">
+                    <div class="a_img">
+                        <a href=../post/{{post.article_type}}?pageid={{post.pid}}>
+                            <img src="../static/pic/{{post.pid}}_1.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="a_right">
+                        <div class="a_title">
+                            <p>{{post.title}}</p>
+                        </div>
+                        <div class="a_editor"></div>
+                        <div class="a_date"></div>
+                        <div class="a_content">
+                            <p>{{post.scontent}}</p>
+                        </div>
+                        <div class="a_tag">
+                            <p><a class="btn btn-primary pull-right" href="../post/{{post.article_type}}?pageid={{post.pid}}">Read more<span class=""></span></a></p>
+                        </div>
+                    </div>
+                </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
