@@ -4,7 +4,7 @@ import requests,re,json
 from bs4 import BeautifulSoup
 import asyncio
 from aiohttp import ClientSession
-import time
+import time,os
 
 
 # 獲取文章內容
@@ -54,8 +54,12 @@ async def download_img(pid,url,path,pcount,article_type):
                 f.write(i)
 
 
-def get_info(pid,url,path,article_type):
-    soup = get_html(url)
+# database
+from sqlalchemy import create_engine
+engine = create_engine('postgres://toppqsvvpcgceh:8e560b0767dc6b30d5140589013a2baca8752165a642c8188459ca806176fa4c@ec2-54-243-252-91.compute-1.amazonaws.com:5432/da1ftjs8usjpu0')
+
+def get_info(pid,url_from,path,article_type):
+    soup = get_html(url_from)
 
     # maek title
     title = chs_to_cht(str(soup.title.string).replace('36','BIN '))
@@ -85,9 +89,13 @@ def get_info(pid,url,path,article_type):
             scontent = a_tag.string
             break
 
-    result = [title,content,scontent,pcount]
-    print(result)
-    return result
+    r = [title,content,scontent,pcount]
 
-import os
-get_info('10','http://www.36dsj.com/archives/17187',os.path.join(os.getcwd()+'/app/test'),'code')
+    engine.execute('INSERT INTO article (pid ,article_type ,url_from ,mode ,title ,content ,scontent ) VALUES (%s,%s,%s,%s,%s,%s,%s);',(pid ,article_type ,url_from ,'crawler' ,r[0] ,r[1] ,r[2]))
+
+
+
+get_info('6','http://www.36dsj.com/archives/17187',os.path.join(os.getcwd()+'/app/static/pic'),'code')
+
+
+

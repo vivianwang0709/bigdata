@@ -76,6 +76,8 @@
 	* 多文件上傳實現
 	* 添加權限功能
 	* 文章自動生成
+		＊ http://chuansong.me/account/SparkDaily?start=336
+		＊ http://www.36dsj.com/archives/17187
 	
 ＊bug紀錄：
 	＊ crawler路徑問題優化
