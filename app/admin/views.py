@@ -152,6 +152,7 @@ def upload_36():
 
         #[title,content,scontent,pcount]
         cdata = get_info(str(pid) , url, path+"/app/static/pic", article_type)
+        
         article.mode = 'crawler'
         article.pid = pid
         article.date = datetime.datetime.now().date().strftime("%Y-%m-%d")
