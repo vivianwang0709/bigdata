@@ -89,4 +89,4 @@ def get_info(pid,url,path,article_type):
     print(result)
     return result
 
-get_info('10','http://www.36dsj.com/archives/17187','../test','code')
+get_info('10','http://www.36dsj.com/archives/17187','~/app/test','code')
