@@ -89,4 +89,5 @@ def get_info(pid,url,path,article_type):
     print(result)
     return result
 
+import os
 get_info('10','http://www.36dsj.com/archives/17187',os.path.join(os.getcwd()+'/app/test'),'code')
