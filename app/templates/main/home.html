@@ -1,5 +1,11 @@
 {% extends "main/base.html" %}
 
+
+{% block title %}
+Big Data Insight|最全大數據資訊網站
+{% endblock %}
+
+
 {% block point %}
         <div class="point">
             <div id="homepage-feature" class="carousel slide" data-ride="carousel">
@@ -59,8 +65,6 @@
 
 {% block content %}
 <div class="content">
-{{super()}}
-
             <div class="post" data-ride='post'>
                 <div class="article">
                     <div class="a_img">
@@ -82,10 +86,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-{% for post in article %}
-    <div class="post" data-ride='post'>
-                <div class="article">
+                {% for post in article %}
+                    <div class="article">
                     <div class="a_img">
                         <a href=../post/{{post.article_type}}?pageid={{post.pid}}>
                             <img src="../static/pic/{{post.pid}}_1.jpg" alt="">
@@ -104,8 +106,10 @@
                             <p><a class="btn btn-primary pull-right" href="../post/{{post.article_type}}?pageid={{post.pid}}">Read more<span class=""></span></a></p>
                         </div>
                     </div>
-                </div>
-    </div>
-{% endfor %}
+                    </div>
+                {% endfor %}
+
+            </div>
+{{super()}}
 </div>
 {% endblock %}

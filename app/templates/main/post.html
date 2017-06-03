@@ -1,5 +1,9 @@
 {% extends "main/base.html" %}
 
+{% block title %}
+Big Data Insight|最全大數據資訊網站
+{% endblock %}
+
 {% block content %}
 <div class="content">
 {{super()}}
@@ -25,8 +29,9 @@
                     </div>
                 </div>
             </div>
-{% for post in article %}
     <div class="post" data-ride='post'>
+    {% for post in article %}
+
                 <div class="article">
                     <div class="a_img">
                         <a href=../post/{{post.article_type}}?pageid={{post.pid}}>
@@ -47,7 +52,8 @@
                         </div>
                     </div>
                 </div>
+    {% endfor %}
+
     </div>
-{% endfor %}
 </div>
 {% endblock %}
