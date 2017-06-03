@@ -95,7 +95,65 @@ def get_info(pid,url_from,path,article_type):
 
 
 
-get_info('6','http://www.36dsj.com/archives/17187',os.path.join(os.getcwd()+'/app/static/pic'),'code')
+#######
+#handle spark url list 
+#
+######
 
 
+s = requests.session()
+def get_end():
+    sql = 'select pid,url_from from article where article_type=%s order by pid desc '
+    result = engine.execute(sql,'learn')
+    for a in result:
+        page_new=a[1]
+    return page_new
+
+def get_pid():
+    sql = 'select max(pid) from article'
+    result = engine.execute(sql)
+    return [a[0] for a in result][0]
+
+
+def get_last(n):
+    url = 'http://www.36dsj.com/archives/tag/spark/page/'+str(n)
+    r = s.get(url)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    for a in soup.find_all('article','excerpt'):
+        url_list.append(a.h2.a['href'])
+
+        
+n=1
+flag=1
+url_list=[]
+get_last(n)
+page_new = get_end()
+
+while (flag):
+    for i in range( len(url_list)):
+        if page_new == url_list[i]:
+            target = i
+            flag = 0
+            
+    n=n+1
+    get_last(n)
+
+
+crawler_url = url_list[0:target]
+crawler_url = crawler_url[-5:]
+
+###
+# save in database
+####
+
+savepath = os.path.join(os.getcwd()+'/app/static/pic')
+pid = get_pid()
+
+for url in crawler_url:
+    pid = pid+1
+    try:
+        get_info(str(pid),url,savepath,'learn')
+        print(str(pid)+'finish')
+    except:
+        pass
 
