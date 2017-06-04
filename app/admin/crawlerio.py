@@ -103,11 +103,13 @@ def get_info(pid,url_from,path,article_type):
 
 s = requests.session()
 def get_end():
-    sql = 'select pid,url_from from article where article_type=%s order by pid desc '
+    sql = 'select pid,url_from from article where article_type=%s'
     result = engine.execute(sql,'learn')
+    new = []
     for a in result:
-        page_new=a[1]
-    return page_new
+        new.append(a[1].split('http://www.36dsj.com/archives/')[1])
+    new.sort()
+    return 'http://www.36dsj.com/archives/'+str(new[-1:][0])
 
 def get_pid():
     sql = 'select max(pid) from article'

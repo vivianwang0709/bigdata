@@ -38,7 +38,7 @@
     <div class="page">
         <div class="header">
             <div class="header-brand">
-                <span><a href="{{ url_for('.home') }}">BIN</a></span>
+                <span><a href="{{ url_for('main.home') }}">BIN</a></span>
             </div>
             <div class="header-middle">
                 <div class="header-motto">
@@ -56,11 +56,11 @@
                         </div>
                         <div class="collapse navbar-collapse" id="example-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="{{url_for('.about')}}">關於我們</a></li>
-                                <li><a href="{{ url_for('.post',name='news')}}">產業資訊</a></li>
-                                <li><a href="{{ url_for('.post',name='code')}}">技術框架</a></li>
-                                <li><a href="{{ url_for('.post',name='analysis')}}">數據分析</a></li>
-                                <li><a href="{{ url_for('.post',name='learn')}}">Spark專區</a></li>
+                                <li class="active"><a href="{{url_for('main.about')}}">關於我們</a></li>
+                                <li><a href="{{ url_for('main.post',name='news')}}">產業資訊</a></li>
+                                <li><a href="{{ url_for('main.post',name='code')}}">技術框架</a></li>
+                                <li><a href="{{ url_for('main.post',name='analysis')}}">數據分析</a></li>
+                                <li><a href="{{ url_for('main.post',name='learn')}}">Spark專區</a></li>
                             </ul>
                         </div>
                     </div>

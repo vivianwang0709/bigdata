@@ -60,10 +60,11 @@
             <div class="detail">
                 {% block detail %}
                 <p> {{ form.title.data }} </p>
-                {{ content |safe }} {% endblock %}
+                {{ content |safe }} 
+                {% endblock %}
             </div>
             <div class="slider slider-article">
-                {% include '_article.like.html' %}
+                {% include 'main/_article.like.html' %}
             </div>
         </div>
     </div>

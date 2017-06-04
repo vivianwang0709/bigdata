@@ -28,7 +28,7 @@ def edit(id):
         article.formtosave(form)
         article.content = form.content.data
         flash('The article has been updated')
-        #return redirect(url_for('main.post',name=article.article_type,pageid=id))
+        return redirect(url_for('main.post',name=article.article_type,pageid=id))
 
     if form.review.data is True:
         if article.mode == 'mk':
