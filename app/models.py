@@ -51,7 +51,8 @@ class Article(db.Model):
         except:
             pid = 1
 
-        self.pid = pid
+        if self.pid is None:
+            self.pid = pid
         article_type = dict(form.article_type.choices).get(form.article_type.data)
         self.article_type = article_type
         self.title = form.title.data
@@ -59,10 +60,12 @@ class Article(db.Model):
         self.scontent = form.scontent.data
 
         if self.mode =='mk':
-            path = os.getcwd()
             self.content = self.convert(form.mkcontent.data)
             self.mkcontent = form.mkcontent.data
-            form.file.data.save(os.path.expanduser(path+'/app/static/pic/'+ self.article_type + "/" +str(pid)+"_1.jpg" ))
+        path = os.getcwd()
+
+        if form.file.data is not None:
+            form.file.data.save(os.path.expanduser(path+'/app/static/pic/'+ self.article_type + "/" +str(self.pid)+"_1.jpg" ))
             #form.file.data.save('/app/app/static/pic'+ article_type + "/" +str(pid)+"_1.jpg" )
 
         db.session.add(self)

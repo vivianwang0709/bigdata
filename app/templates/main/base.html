@@ -4,6 +4,7 @@
     {% block title %}{% endblock %}
     </title>
 <head>
+{% block head %}
     <meta name="keywords" content="大數據,大數據學習,大數據教程,大數據技術,大數據分析,大數據網框架,大數據平台" />
     <meta name="robots" content="all" />
     <meta charset="utf-8">
@@ -11,8 +12,8 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="../static/main.css?v=2">
-    <link rel="stylesheet" href="../static/css/fix.css?v=2">
+    <link rel="stylesheet" href="/static/main.css?v=2">
+    <link rel="stylesheet" href="/static/css/fix.css?v=2">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -32,7 +33,7 @@
     ga('create', 'UA-92622048-2', 'auto');
     ga('send', 'pageview');
     </script>
-    
+{% endblock %}    
 </head>
 <body>
     <div class="page">

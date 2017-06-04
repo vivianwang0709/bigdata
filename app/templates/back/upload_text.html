@@ -25,12 +25,12 @@
     <div class="page-header">
         <h1> Text Upload Mode</h1>
     </div>
-
-    <div class="col-md-12">
-        <form method="post" role="form">
+    <form class="form form-horizontal" enctype="multipart/form-data" method="post" role="form">
+        <div class="col-md-12">
         {{ wtf.form_field(form.title) }}
         {{ wtf.form_field(form.author) }}
         {{ wtf.form_field(form.article_type) }}
+        {{ wtf.form_field(form.file) }}
         {{ wtf.form_field(form.scontent) }}
         {{ wtf.form_field(form.submit) }}
         {{ wtf.form_field(form.review) }}
@@ -39,6 +39,8 @@
             <textarea name='editor' id="content" class="ckeditor" rows="10" cols="80">
             {{editor}}
             </textarea>
+            </div>
+
         </form>    
     </div>
     <script type="text/javascript">

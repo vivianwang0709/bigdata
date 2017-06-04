@@ -24,16 +24,25 @@ from werkzeug import secure_filename
 def edit(id):
     article = Article.query.get_or_404(id)
     form = EditForm()
+
     if form.submit.data is True:
+        if article.mode == 'mk':
+            article.content = article.convert(form.mkcontent.data)
+        else:
+            article.content = request.form['editor']
+
         article.formtosave(form)
-        article.content = form.content.data
+        name = form.article_type.data
         flash('The article has been updated')
-        return redirect(url_for('main.post',name=article.article_type,pageid=id))
+        return redirect(url_for('main.post',pageid=id,name=str(name)))
 
     if form.review.data is True:
         if article.mode == 'mk':
-            form.content.data = article.convert(form.mkcontent.data)
-        return render_template('back/review.html', form=form, content=form.content.data)
+            content = article.convert(form.mkcontent.data)
+        else:
+            content = request.form['editor']
+
+        return render_template('back/review.html', title=form.title.data , content=content)
 
     form.title.data = article.title
     form.author.data = article.author
@@ -41,6 +50,7 @@ def edit(id):
     form.scontent.data = article.scontent
     form.content.data = article.content
     form.mkcontent.data = article.mkcontent
+
     if article.mode == 'mk':
         return render_template('back/upload_mk.html', form=form)
     else:
@@ -101,8 +111,8 @@ def upload_text():
     form = textUploadForm()
     if form.submit.data is True:
         article.mode = 'text'
-        article.formtosave(form)
         article.content = request.form['editor']
+        article.formtosave(form)
         return render_template('back/success.html',text=request.form['editor'])
 
     if form.review.data is True:

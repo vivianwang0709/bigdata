@@ -48,6 +48,7 @@ class textUploadForm(FlaskForm):
     title = StringField("Article Title", validators=[Required()])
     author = StringField('Author', validators=[Required()])
     article_type = SelectField('Article Type',choices=[('1','code'),('2','analysis'),('3','news'),('4','learn')])
+    file = FileField('File Upload',render_kw={'multiple':True})
     scontent = TextAreaField("Article Scontent", validators=[Required()])    
     submit = SubmitField('Submit')
     review = SubmitField('Review')
