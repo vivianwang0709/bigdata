@@ -142,7 +142,7 @@ while (flag):
 
 
 crawler_url = url_list[0:target]
-crawler_url = crawler_url[-5:]
+crawler_url = crawler_url[-10:]
 
 ###
 # save in database
