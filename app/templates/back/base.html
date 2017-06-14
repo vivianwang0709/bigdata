@@ -4,6 +4,7 @@
 
 {% block head %}
 {{ super() }}
+<link rel="stylesheet" href="/static/css/main2.css?v=2">
 {% endblock %}
 
 {% block navbar %}
@@ -20,6 +21,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('admin.post') }}">Edit Post</a></li>
                 {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('admin.logout') }}">Log Out</a></li>
                 {% else %}

@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, login_required, \
 
 # 導入init的db
 from .. import db
-from ..models import User,Article
+from ..models import User,Article,get_engine
 from . import admin
 from .forms import LoginForm,UploadForm,EditForm,mkUploadForm,textUploadForm
 from .crawler import *
@@ -14,10 +14,41 @@ from .autojson import *
 import os,datetime,json,random
 from werkzeug import secure_filename
 
-
 # @admin.route('/success')
 # def success():
 #     return render_template('back/success.html')
+
+
+
+#back/post?type=new&num=1
+@admin.route('/post', methods=['GET', 'POST'])
+@login_required
+def post():
+
+    num = request.args.get('num')
+    sort = request.args.get('type')
+
+    if num is not None:
+        num = int(num)
+        if sort is not None:
+            article = Article.query.filter(Article.article_type==sort)[5*(num-1):5*num]
+        else:
+            article = Article.query.filter(Article.pid<=num*5).filter(Article.pid>=(num-1)*5)
+    elif sort is not None:
+        article = Article.query.filter(Article.article_type==sort)[:5]
+    else:
+        article = Article.query.filter(Article.pid<=5)
+
+
+    if sort is not None:
+        count = Article.query.filter(Article.article_type==sort).count()
+    else:
+        count = Article.query.count()
+
+
+    return render_template('back/test.html',article=article,sort=sort,aa=int(count/5))
+
+
 
 @admin.route('/edit/<int:id>', methods=['GET', 'POST'])
 @login_required

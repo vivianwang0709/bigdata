@@ -6,6 +6,16 @@ from markdown import markdown
 import bleach
 
 
+from config import config
+from sqlalchemy import create_engine
+secret =  config['production'].SQLALCHEMY_DATABASE_URI
+
+
+def get_engine():
+    return create_engine(secret)
+
+
+
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)

@@ -1,19 +1,116 @@
-{% extends "main/base.html" %}
+{% extends "back/base.html" %} 
+{% import "bootstrap/wtf.html" as wtf %} 
 
-{% block title %}
-{{ title }}
+
+{% block navbar %}
+<div class="navbar navbar-inverse et-navbar" role="navigation">
+    <div class="container et-container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('main.home') }}">Big Data Insight</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('admin.post') }}">Edit Post</a></li>
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('admin.logout') }}">Log Out</a></li>
+                {% else %}
+                <li><a href="{{ url_for('admin.login') }}">Log In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 
+
 {% block content %}
-<div class="content">
-            <div class="detail">
-                {% block detail %}
-                <h2> {{ title }} </h2> {{content|safe}} 
-                {% endblock %}
+<div class="container et-container">
+    <form class="form form-horizontal" method="post" role="form">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <div class="pull-left">
+                <a class="btn btn-success" href='#'>New</a>
+                <input class="btn btn-danger" type="submit" value="Delete"/>
             </div>
-            <div class="slider slider-article">
-                {% include 'main/_article.like.html' %}
+
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle active" data-toggle="dropdown">Sort <span class="caret"></span></button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li><a href="/back/post?type=new">Filter by News</a></li>
+                        <li><a href="/back/post?type=code">Filter by Code</a></li>
+                        <li><a href="/back/post?type=analysis">Filter by Analysis</a></li>
+                        <li><a href="/back/post?type=learn">Filter by Learn</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/back/post">Reset</a></li>
+                    </ul>
+                </div>
             </div>
+        </div>
+
+        <div class="et-table clearfix"  id={{aa}}>
+            <div class="et-column clearfix">
+                <div><p>del</p></div>
+                <div><p>Pid</p></div>
+                <div><p>Type</p></div>
+                <div><p>Pic</p></div>
+                <div><p>Title</p></div>
+                <div><p>Scontent</p></div>
+                <div><p>Action</p></div>
+            </div>
+
+            {% for post in article %}
+            <div class='et-column et-article clearfix'>
+                <div><label><input name="{{post.pid}}" type="checkbox" value=""/></label></div>
+                <div><p>{{post.pid}}</p></div>
+                <div><p>{{post.article_type}}</p></div>
+                <div><img src="/static/pic/{{post.pid}}_1.jpg"></div>
+                <div><p>{{post.title}}</p></div>
+                <div><p>{{post.scontent}}</p></div>
+                <div>
+                    <a class="btn  btn-xs btn-info" href=/post/{{post.article_type}}?pageid={{post.pid}}>View</a>
+                    <a class="btn btn-xs btn-success" href=/back/edit/{{post.pid}}>Edit</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <ul class="pagination pagination-lg square">
+                <li class="active"><a href="post?num=1">1</a></li>
+                {% if aa<10 %}
+                    {% for  i in range(2,aa+1) %}
+                        {% if sort  %}
+                            <li><a href="post?type={{sort}}&num={{i}}">{{i}}</a></li>
+                        {% else %}
+                            <li><a href="post?num={{i}}">{{i}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <li><a href="post?num=2">2</a></li>
+                    <li><a href="post?num=3">3</a></li>
+                    <li><a href="post?num=4">4</a></li>
+                    <li class='disabled'><a href="#">...</a></li>
+                    <li><a href="post?num={{aa-4}}">{{aa-4}}</a></li>
+                    <li><a href="post?num={{aa-3}}">{{aa-3}}</a></li>
+                    <li><a href="post?num={{aa-2}}">{{aa-2}}</a></li>
+                    <li><a href="post?num={{aa-1}}">{{aa-1}}</a></li>
+                {% endif %}
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+    </form>
 </div>
 {% endblock %}
