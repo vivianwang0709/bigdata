@@ -6,7 +6,7 @@ from ..models import User,Article
 
 @main.route('/')
 def home():
-    article = Article.query.order_by(Article.pid.desc()).all()
+    article = Article.query.order_by(Article.pid.desc())[:5]
     return render_template('main/home.html',article=article)
 
 
@@ -28,5 +28,24 @@ def post(name):
         return render_template('main/article.html',posts=posts)
         #return render_template('article/'+name+'_'+str(pageid)+'.html')
     if name in tag:
-        article = Article.query.filter_by(article_type=name).order_by(Article.pid.desc()).all()
-        return render_template('main/post.html',article=article,title=tag[name])
+        article = Article.query.filter_by(article_type=name).order_by(Article.pid.desc())[:5]
+        return render_template('main/post.html',article=article,title=tag[name],type=name)
+
+
+@main.route('/get/<int:num>', methods=['GET', 'POST'])
+def getPost(num):
+    num = int(num)
+    type = request.args.get('type')
+    if type is not None:
+        article = Article.query.filter_by(article_type=type).order_by(Article.pid.desc())[(num-1)*5:num*5]
+    else:
+        article = Article.query.order_by(Article.pid.desc())[(num-1)*5:num*5]
+    return render_template('main/get.html',article=article)
+
+
+@main.route('/test')
+def test():
+    return render_template('main/e6.html')
+
+
+

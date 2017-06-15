@@ -1,0 +1,23 @@
+{% for post in article %}
+
+                <div class="article">
+                    <div class="a_img">
+                        <a href=../post/{{post.article_type}}?pageid={{post.pid}}>
+                            <img src="../static/pic/{{post.pid}}_1.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="a_right">
+                        <div class="a_title">
+                            <p>{{post.title}}</p>
+                        </div>
+                        <div class="a_editor"></div>
+                        <div class="a_date"></div>
+                        <div class="a_content">
+                            <p>{{post.scontent}}</p>
+                        </div>
+                        <div class="a_tag">
+                            <p><a class="btn btn-primary pull-right" href="../post/{{post.article_type}}?pageid={{post.pid}}">Read more<span class=""></span></a></p>
+                        </div>
+                    </div>
+                </div>
+{% endfor %}

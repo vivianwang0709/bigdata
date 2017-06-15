@@ -3,6 +3,11 @@
 
 {% block title %}BIN - Login{% endblock %}
 
+{% block head %}
+{{ super() }}
+<script src="/static/upload.js"></script>
+{% endblock %}
+
 
 {% block content %}
 <div class="container">
@@ -28,7 +33,13 @@
         {{ wtf.form_field(form.author) }}
         {{ wtf.form_field(form.article_type) }}
         {{ wtf.form_field(form.scontent) }}
-        {{ wtf.form_field(form.file) }}
+        <!-- {{ wtf.form_field(form.file) }} -->
+        <div class="form-group mkupload">
+            <div class="btn btn-default upload">
+                <span>選擇代表圖片</span>
+                <input id="uploadinput" name='file' type="file" accept="image/*">
+            </div>
+        </div>
         {{ wtf.form_field(form.submit) }}
         {{ wtf.form_field(form.review) }}
     </br>
