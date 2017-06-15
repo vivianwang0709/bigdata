@@ -11,9 +11,9 @@
       $img.css("display","block")
       
       if (type)
-        var url = "http://127.0.0.1:5000/get/"+num+"?type="+type
+        var url = "http://bigdatainsight.herokuapp.com/get/"+num+"?type="+type
       else
-        var url = "http://127.0.0.1:5000/get/"+num
+        var url = "http://bigdatainsight.herokuapp.com/get/"+num
       console.log(url)
       $.get(url, function(data){
                 $("#more").append(data);
