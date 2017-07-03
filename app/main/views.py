@@ -6,8 +6,9 @@ from ..models import User,Article
 
 @main.route('/')
 def home():
+    num = Article.query.count()
     article = Article.query.order_by(Article.pid.desc())[:5]
-    return render_template('main/home.html',article=article)
+    return render_template('main/home.html',article=article,num=num)
 
 
 #路由：關於我
@@ -28,8 +29,9 @@ def post(name):
         return render_template('main/article.html',posts=posts)
         #return render_template('article/'+name+'_'+str(pageid)+'.html')
     if name in tag:
+        num = Article.query.filter_by(article_type=name).count()
         article = Article.query.filter_by(article_type=name).order_by(Article.pid.desc())[:5]
-        return render_template('main/post.html',article=article,title=tag[name],type=name)
+        return render_template('main/post.html',article=article,title=tag[name],type=name,num=num)
 
 
 @main.route('/get/<int:num>', methods=['GET', 'POST'])
