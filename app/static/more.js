@@ -8,9 +8,8 @@
       var $img = $("#moreimg")
       var $btn = $("#morebtn")
 
-      
       var max = $('.post').data('num')
-      if (num>max%5){
+      if (num>max/5){
           $btn.css("display","none")
           $('.morediv').append('<p>親，感謝你的支持，已經加載到底部摟～</p>')
           return
@@ -20,9 +19,9 @@
       $img.css("display","block")
 
       if (type)
-        var url = "http://bigdatainsight.herokuapp.com/"+num+"?type="+type
+        var url = "http://bigdatainsight.herokuapp.com/get/"+num+"?type="+type
       else
-        var url = "http://bigdatainsight.herokuapp.com/"+num
+        var url = "http://bigdatainsight.herokuapp.com/get/"+num
       
       $.get(url, function(data){
                 $("#more").append(data);
