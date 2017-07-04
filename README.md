@@ -121,6 +121,7 @@
 
 	* 2017.07.03
 		* 修復bootstrap font
+		* 修復more.js
 	
 		* facebook 社群api
 		* 基本seo優化
