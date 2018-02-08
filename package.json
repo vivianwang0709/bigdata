@@ -1,0 +1,18 @@
+{
+  "name": "bigdata",
+  "version": "1.0.0",
+  "description": "------- * 時間：2017.02.08-2017.02.31 * 前端 \t* 網站模板，簡單套用bootstrap框架 \t* 添加文章動態顯示 \t\t＊ 說明：ajax讀json檔 + scroll事件綁定 \t* 添加ga追蹤碼 * 後端 \t* 使用flask，做為web框架 \t* 添加文章上傳模塊 \t\t＊ 說明：json文檔作為儲存 \t\t＊ 流程：上傳.md檔 → 格式轉換成.html檔並儲存 * 建置 \t* 2017.02.26 建置於pythonanywhere.com，網址為http://vivian.pythonanywhere.com/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.28.9",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "style-loader": "^0.20.1",
+    "webpack": "^3.10.0"
+  }
+}
