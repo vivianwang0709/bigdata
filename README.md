@@ -122,10 +122,12 @@
 	* 2017.07.03
 		* 修復bootstrap font
 		* 修復more.js
-	
+
+	* 待更新項目	
 		* facebook 社群api
 		* 基本seo優化
-
 		* spark技術日報爬蟲撰寫
 		* 穿插上傳演算法設計
 		* markdown特效修復
+		* 多圖案上傳 http://blog.csdn.net/deepwine/article/details/47277093
+		* 圖片庫查看
