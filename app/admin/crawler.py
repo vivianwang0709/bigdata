@@ -36,7 +36,7 @@ def download_img(pid,url,path,pcount,article_type):
     r = requests.get(url)
     s = BytesIO(r.content)
     i = Image.open(s)
-    i.save(path+'/'+article_type+'/'+image_name)
+    i.save(path+'/'+image_name)
 
 
 

@@ -75,7 +75,7 @@ class Article(db.Model):
         path = os.getcwd()
 
         if form.file.data is not None:
-            form.file.data.save(os.path.expanduser(path+'/app/static/pic/'+ self.article_type + "/" +str(self.pid)+"_1.jpg" ))
+            form.file.data.save(os.path.expanduser(path+'/app/static/pic/' + str(self.pid)+"_1.jpg" ))
             #form.file.data.save('/app/app/static/pic'+ article_type + "/" +str(pid)+"_1.jpg" )
 
         db.session.add(self)
