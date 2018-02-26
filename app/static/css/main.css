@@ -6489,6 +6489,7 @@ button.close {
   .a_title > p {
     font-size: 18px;
     margin-top: 15px;
+    text-align: center
   }
 }
 .a_content {
@@ -6520,7 +6521,7 @@ button.close {
   width: 100%;
   height: 100%;
 }
-@media (max-width: 880px) {
+@media (max-width: 880px) and (min-width: 380px){
   .a_img {
     margin-top: 12px;
     max-width: 160px;
@@ -6533,7 +6534,6 @@ button.close {
     margin: 0 auto;
     margin-top: 6px;
     height: 140px;
-    max-width: 130px;
   }
 }
 .a_right {
@@ -6565,7 +6565,7 @@ button.close {
 @media (max-width: 480px) {
   .slider {
     margin: 30px auto;
-    width: 310px;
+    width: 100%;
     float: none;
     clear: both;
   }
